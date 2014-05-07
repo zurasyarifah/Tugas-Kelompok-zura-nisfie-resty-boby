@@ -1,0 +1,236 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+struct tanggalan
+{
+	int tanggal;
+	string bulan;
+	int tahun;
+	bool kabisat;
+};
+
+void nambah_bulan();
+
+tanggalan hari_ini(tanggalan sekarang)
+{
+	system("cls");
+	bool bogel=false;
+	cout<< " Masukkan tanggal : ";
+	cin>>sekarang.tanggal;
+	
+	
+	cout<< " Masukkan bulan   : ";
+	cin>>sekarang.bulan;
+	
+	
+	cout<< " Masukkan tahun   : ";
+	cin>>sekarang.tahun;
+	cout<<endl <<endl;
+	ulang:;
+	if ((sekarang.bulan=="januari")||(sekarang.bulan=="februari")||(sekarang.bulan=="maret")||(sekarang.bulan=="april")||(sekarang.bulan=="mei")||(sekarang.bulan=="juni")||(sekarang.bulan=="juli")||(sekarang.bulan=="agustus")||(sekarang.bulan=="september")||(sekarang.bulan=="oktober")||(sekarang.bulan=="november")||(sekarang.bulan=="desember"))
+	{
+		bogel=true;
+	}
+	else 
+	{
+		if (bogel==false)
+		{
+			cout<< " Masukkan bulan : ";
+			cin>>sekarang.bulan;
+			cout<<endl;
+			goto ulang;
+		}
+	}
+	if (sekarang.tahun%4==0)
+	{
+		sekarang.kabisat=true;
+	}
+	else
+	{
+		sekarang.kabisat=false;
+	}
+
+	if ((sekarang.bulan=="januari")||(sekarang.bulan=="maret")||(sekarang.bulan=="mei")||(sekarang.bulan=="juli")||(sekarang.bulan=="agustus")||(sekarang.bulan=="oktober"))
+	{
+		while((sekarang.tanggal>31)||(sekarang.tanggal<1))
+		{
+			
+			cout<< " Maaf, tanggal yang Anda masukkan salah. Bulan " <<sekarang.bulan <<" hanya sampai tanggal 31." <<endl;
+			cout<< " Silahkan input tanggal kembali" <<endl<<endl;
+			cout<< " Masukkan tanggal : ";
+			cin>>sekarang.tanggal;
+			cout<<endl;
+		}
+	}
+	else if ((sekarang.bulan=="april")||(sekarang.bulan=="juni")||(sekarang.bulan=="september")||(sekarang.bulan=="november"))
+	{
+		while((sekarang.tanggal>30)||(sekarang.tanggal<1))
+		{
+			cout<< " Maaf, tanggal yang Anda masukkan salah. Bulan " <<sekarang.bulan <<" hanya sampai tanggal 30." <<endl;
+			cout<< " Silahkan input tanggal kembali" <<endl<<endl;
+			cout<< " Masukkan tanggal : ";
+			cin>>sekarang.tanggal;
+			cout<<endl;
+		}
+	}
+	else if (sekarang.bulan=="februari")
+	{
+		if (sekarang.kabisat==true)
+		{
+			while ((sekarang.tanggal>29)||(sekarang.tanggal<1))
+			{
+				cout<< " Maaf, tanggal yang Anda masukkan salah. Bulan " <<sekarang.bulan <<" hanya sampai tanggal 29." <<endl;
+				cout<< " Silahkan input tanggal kembali" <<endl<<endl;
+				cout<< " Masukkan tanggal : ";
+				cin>>sekarang.tanggal;
+				cout<<endl;
+			}
+		}
+		else if (sekarang.kabisat==false)
+		{
+			while ((sekarang.tanggal>28)||(sekarang.tanggal<1))
+			{
+				cout<< " Maaf, tanggal yang Anda masukkan salah. Bulan " <<sekarang.bulan <<" hanya sampai tanggal 28." <<endl;
+				cout<< " Silahkan input tanggal kembali" <<endl<<endl;
+				cout<< " Masukkan tanggal : ";
+				cin>>sekarang.tanggal;
+				cout<<endl;
+			}	
+		}
+	}
+	cout<<"Tanggal Hari ini: ";
+	cout<<sekarang.tanggal<<"/"<<sekarang.bulan<<"/"<<sekarang.tahun<<endl;
+	system("pause");
+	system("cls");
+	return sekarang;
+}
+
+tanggalan besok;
+string month[12] = { "januari", "februari", "maret", "april","mei","juni","juli","agustus","september","oktober","november","desember"};
+
+tanggalan hari_esok()
+{
+		
+	if ((besok.bulan=="januari")||(besok.bulan=="maret")||(besok.bulan=="mei")||(besok.bulan=="juli")||(besok.bulan=="agustus")||(besok.bulan=="oktober"))
+	{
+		if (besok.tanggal==31)
+		{
+			besok.tanggal=1;
+			cout<<besok.tanggal;
+			nambah_bulan();
+		}
+
+		else if (besok.tanggal<31)
+		{
+			besok.tanggal+=1;
+		}
+	}
+
+	else if ((besok.bulan=="april")||(besok.bulan=="juni")||(besok.bulan=="september")||(besok.bulan=="november"))
+	{
+		if (besok.tanggal==30)
+		{
+			besok.tanggal = 1;
+			nambah_bulan();
+		}
+		else if( besok.tanggal<30)
+		{
+			besok.tanggal+=1;
+		}
+	}
+
+	else if ((besok.bulan=="februari")&&(besok.kabisat==true))
+	{
+		if (besok.tanggal==29)
+		{
+			besok.tanggal = 1;
+			nambah_bulan();
+		}
+		else if (besok.tanggal<29)
+		{
+			besok.tanggal+=1;
+		}
+	}
+
+	else if ((besok.bulan=="februari")&&(besok.kabisat==false))
+	{
+		if (besok.tanggal==28)
+		{
+			besok.tanggal = 1;
+			nambah_bulan();
+		}
+		else if (besok.tanggal<28)
+		{
+			besok.tanggal+=1;
+		}
+	}
+	
+	else if (besok.bulan=="desember") //ceritanya ini tanggal 31 desember
+	{ 
+		if (besok.tanggal==31)
+		{
+			besok.bulan = "januari";
+			besok.tanggal = 1;
+			besok.tahun +=1;
+		}
+		else if (besok.tanggal<31)
+		{
+			besok.tanggal+=1;
+		}
+	}
+	system("cls");
+	cout<<"Tanggal Hari esok: ";
+	cout<<besok.tanggal<<"/"<<besok.bulan<<"/"<<besok.tahun<<endl <<endl;
+	cout<< endl <<endl << "Tekan enter untuk kembali ke menu utama " <<endl <<endl;
+	
+
+	system("pause");
+	system("cls");
+	return besok;
+}
+	
+void nambah_bulan()
+{
+	for (int i=0; i<11; i++)
+	{
+		if (besok.bulan==month[i])
+		{
+			besok.bulan = month[i+1];
+		}
+	}
+}
+	
+
+
+void main()
+{
+	menu:;
+	int pilih;
+	tanggalan kuda;
+	cout<< " ==============================================" <<endl;
+	cout<< "            PROGRAM KALENDER SEDERHANA	       " <<endl;
+	cout<< "                       by                      " <<endl;
+	cout<< "            Zura, Nisfie, Resty & Bobby        " <<endl;
+	cout<< " ==============================================" <<endl;
+	cout<< " Menu :" <<endl;
+	cout<< " 1. Hari Ini " <<endl;
+	cout<< " 2. Hari Esok " <<endl;
+	cout<< " 3. Exit " <<endl <<endl;
+
+	cout<< " Masukkan pilihan Anda : ";
+	cin>> pilih;
+	
+	if (pilih==1)
+	{
+		besok = hari_ini(kuda);
+		goto menu;
+	}
+
+	else if(pilih==2)
+	{
+		hari_esok();
+		goto menu;
+	}
+}
